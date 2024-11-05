@@ -1,15 +1,15 @@
 version: '3'
 
 networks:
-  mongo-network:
+  mongo-network: #可修改确保下面的和这个同名的网络都被修改
     external: true
     name: 'mongo-network'
-  redis-network:
+  redis-network: #可修改确保下面的和这个同名的网络都被修改
     external: true
-    name: 'redis-network'
-  api-network:
+    name: 'redis'
+  api-network: #可修改确保下面的和这个同名的网络都被修改
     external: true
-    name: 'api-network'
+    name: 'api'
 
 services:
 
@@ -41,7 +41,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./db:/data/db
+      - ./seed:/data/db
    
   mongo-express:
    image: mongo-express:1.0-20-alpine3.19
