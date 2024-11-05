@@ -1,13 +1,13 @@
 version: '3'
 
 networks:
-  mongo-network: #可修改确保下面的和这个同名的网络都被修改
+  mongo-network1: 
     external: true
     name: 'mongo-network'
-  redis-network: #可修改确保下面的和这个同名的网络都被修改
+  redis-network1: 
     external: true
     name: 'redis'
-  api-network: #可修改确保下面的和这个同名的网络都被修改
+  api-network1: 
     external: true
     name: 'api'
 
@@ -23,8 +23,8 @@ services:
     ports:
       - '9000:9000'
     networks:
-      - api-network
-      - redis-network
+      - api-network1
+      - redis-network1
     depends_on:
       - mongo
       - redis
@@ -36,8 +36,8 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
     networks:
-      - mongo-network
-      - api-network
+      - mongo-network1
+      - api-network1
     ports:
       - 27017:27017
     volumes:
@@ -54,7 +54,7 @@ services:
     - ME_CONFIG_MONGODB_ADMINPASSWORD=password
     - ME_CONFIG_MONGODB_SERVER=mongo
    networks:
-    - mongo-network
+    - mongo-network1
    depends_on:
     - mongo
    
@@ -62,4 +62,4 @@ services:
     image: redis:alpine
     container_name: redis
     networks:
-      - redis-network
+      - redis-network1
